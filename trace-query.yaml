@@ -1,0 +1,7 @@
+type: JAEGER
+config:
+  sampler_type: const
+  sampler_param: 1
+  agent_host: tempo
+  agent_port: 6831
+  service_name: thanos-query

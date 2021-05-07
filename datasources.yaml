@@ -1,0 +1,36 @@
+apiVersion: 1
+datasources:
+  - name: Thanos
+    type: prometheus
+    url: http://thanos_querier:10902
+    uid: thanos
+    access: proxy
+    editable: true
+    isDefault: true
+    version: 1
+    jsonData:
+      httpMethod: GET
+      exemplarTraceIdDestinations:
+        - name: traceID
+          datasourceUid: tempo
+  - name: Prometheus
+    type: prometheus
+    url: http://prometheus:9090
+    uid: prometheus
+    access: proxy
+    editable: true
+    isDefault: false
+    version: 1
+    jsonData:
+      httpMethod: GET
+      exemplarTraceIdDestinations:
+        - name: traceID
+          datasourceUid: tempo
+  - name: Tempo
+    type: tempo
+    uid: tempo
+    url: http://tempo:3100
+    access: proxy
+    editable: false
+    isDefault: false
+    version: 1
